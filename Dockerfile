@@ -1,18 +1,12 @@
-FROM alpine:3.5
+FROM alpine:3.7
 
-RUN apk add --update nodejs
+RUN apk add --update nodejs && npm config set unsafe-perm true && npm install -g nodemon
 
 WORKDIR /var/openKB
-
-COPY locales/ /var/openKB/locales/
-COPY public/ /var/openKB/public/
-COPY routes/ /var/openKB/routes/
-COPY views/ /var/openKB/views/
-COPY config/ /var/openKB/config/
-COPY app.js /var/openKB/
-COPY package.json /var/openKB/
-
+COPY package.json .snyk ./
 RUN npm install
+
+COPY . ./
 
 VOLUME /var/openKB/data
 

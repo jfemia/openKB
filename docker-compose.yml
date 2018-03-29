@@ -1,0 +1,11 @@
+version: "3"
+services:
+  openkb:
+    build: .
+    container_name: "openKB_dev"
+    ports:
+      - 4444:4444
+    volumes:
+      - ./:/var/openKB
+    entrypoint: 
+      ["nodemon", "app.js"]
